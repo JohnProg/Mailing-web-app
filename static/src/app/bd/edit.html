@@ -1,0 +1,278 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1><a href="" ui-sref="bd.list"><i class="fa fa-angle-left"></i></a> Editar lista de contacto</h1>
+            </header>
+            <section>
+                <form ng-submit="updateModuleBD()"
+                      action=""
+                      name="BDForm">
+                    <div class="form-group row">
+                        <div class="col-sm-4 no-padding">
+                            <label for="name" class="col-sm-10 control-label">Nombre <span
+                                    class="color-alizarin">(*)</span>:</label>
+
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       autofocus
+                                       class="form-control" id="name"
+                                       ng-model="bd.list_name"
+                                       required
+                                       placeholder="Ingresar el nombre de la lista de contacto">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="status" class="col-sm-2 control-label">Estado: </label>
+                            <input type="checkbox"
+                                   id="status"
+                                   ng-model="bd.status"> {[{ bd.status ? '(Habilitado)' : '(Deshabilitado)'}]}
+                        </div>
+
+                    </div>
+                    <div class="no-margin row">
+                        <header class="row no-margin page-header">
+                            <h2 class="col-sm-12 no-padding">Agregar Contactos</h2>
+                        </header>
+                        <br/>
+
+<!--                        <div class="no-margin row">
+                            <div class="col-sm-3 no-padding">
+                                <select name="origin" id="origin"
+                                        class="form-control"
+                                        ng-model="bd.origin">
+                                    <option value="1">Nombre</option>
+                                    <option value="2">Correo electrónico</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 no-padding col-sm-offset-1">
+                                <select name="destination"
+                                        id="destination"
+                                        class="form-control"
+                                        ng-model="bd.destination">
+                                    <option value="2">Correo electrónico</option>
+                                    <option value="1">Nombre</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>-->
+
+                        <div class="no-margin row container-file-upload">
+                            <a class="btn btn-success btn-trigger"><i class="fa fa-upload"></i> Importar CSV</a>
+                            <input type="file"
+                                   class="input-file hidden"
+                                   data-module="db"
+                                   data-parent=".container-file-upload"
+                                   id="import-db"
+                                   ng-file-select="onFileSelect($files)"
+                                   data-filetype="txt"/>
+                            <a href=""
+                               open-modal
+                               data-target="#addContact"
+                               ng-click="focusModal()"
+                               class="btn btn-success"><i class="fa fa-user"></i> Agregar un contacto</a>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="no-margin row" ng-show="(bd.badContacts.length + bd.goodContacts.length) > 0">
+                        <header class="row no-margin page-header">
+                            <h2 class="col-sm-12 no-padding">Contactos <span class="badge">{[{bd.badContacts.length + bd.goodContacts.length}]}</span></h2>
+                        </header>
+                        <section class="tab-container"
+                                ng-init="showTab = true">
+                            <div class="tabbable-panel">
+				                <div class="tabbable-line">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href=""
+                                               ng-click="showTab = true"
+                                               aria-controls="home"
+                                               role="tab"
+                                               data-toggle="tab">Correctos <span class="badge">{[{bd.goodContacts.length}]}</span></a></li>
+                                        <li role="presentation">
+                                            <a href=""
+                                               ng-click="showTab = false"
+                                               aria-controls="profile"
+                                               role="tab"
+                                               data-toggle="tab">Por corregir <span class="badge">{[{bd.badContacts.length}]}</span></a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel"
+                                             ng-show="showTab"
+                                             ng-class="{'active': showTab}"
+                                             class="tab-pane">
+                                            <br/>
+                                            <p ng-show="bd.goodContacts.length == 0">No hay datos.</p>
+                                            <div ng-show="bd.goodContacts.length != 0" class="form-inline" role="form">
+                                                <div class="form-group" style="width: 100%;">
+                                                    <label for="search">Buscar: </label>
+                                                    <input id="search"
+                                                           type="text"
+                                                           autofocus="autofocus"
+                                                           placeholder="Nombre, email, ..."
+                                                           class="form-control"
+                                                           ng-model="search"/>
+                                                    <a href="" ng-disabled="getQuantityOfSelectedItems(checkboxes.items) == 0"
+                                                       ng-click="removeItems(checkboxes.items)"
+                                                       open-modal
+                                                       data-target="#deleteContact"
+                                                       data-hint="Eliminar todos los items con check"
+                                                       class="hint--left hint--bounce pull-right btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <div class="table-responsive"
+                                                    ng-show="bd.goodContacts.length != 0">
+                                            	<table ng-table="tableParams" class="text-center table table-striped">
+                                                    <tr ng-repeat="contact in $data">
+                                                        <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
+                                                            <input type="checkbox" ng-model="checkboxes.items[contact.id]" />
+                                                        </td>
+                                                        <td data-title="'Nombre y Apellidos'" sortable="'name'">
+                                                            {[{ contact.editable ? '' : contact.name }]}
+                                                            <input type="text"
+                                                                   autofocus
+                                                                   class="form-control"
+                                                                   ng-show="contact.editable"
+                                                                   placeholder="Escribe un nombre"
+                                                                   ng-model="contact.name"/>
+                                                        </td>
+                                                        <td data-title="'Correo Electrónico'" sortable="'email'">
+                                                            {[{ contact.editable ? '' : contact.email }]}
+                                                            <input type="text"
+                                                                   ng-show="contact.editable"
+                                                                   class="form-control"
+                                                                   placeholder="Ingresa correo electrónico"
+                                                                   ng-model="contact.email"/>
+                                                        </td>
+                                                        <td data-title="'Acciones'">
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               data-hint="Editar"
+                                                               ng-show="!contact.editable"
+                                                               ng-click="contact.editable = true"
+                                                               class="hint--left hint--bounce btn btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               ng-show="contact.editable"
+                                                               data-hint="Guardar"
+                                                               ng-click="addNewContactData(contact)"
+                                                               ng-disabled="!contact.name || contact.name.length == 0 || !isEmail(contact.email)"
+                                                               class="hint--left hint--bounce btn btn-primary"><i class="fa fa-floppy-o"></i></a>
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               data-hint="Cancelar"
+                                                               ng-click="contact.editable = false"
+                                                               ng-show="contact.editable"
+                                                               class="hint--left hint--bounce btn btn-default"><i class="fa fa-undo"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+                                                    <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+                                                </script>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel"
+                                             ng-show="!showTab"
+                                             ng-class="{'active': !showTab}"
+                                             class="tab-pane">
+                                            <br/>
+                                            <p ng-show="bd.badContacts.length == 0">No hay datos.</p>
+                                            <form action=""
+                                                  class="form-inline" role="form">
+                                                <div class="form-group" style="width: 100%;"
+                                                        ng-show="bd.badContacts.length != 0">
+                                                    <label for="search">Buscar: </label>
+                                                    <input id="search"
+                                                           type="text"
+                                                           autofocus="autofocus"
+                                                           placeholder="Nombre, email, ..."
+                                                           class="form-control"
+                                                           ng-model="search"/>
+                                                    <a href=""
+                                                       ng-disabled="getQuantityOfSelectedItems(checkboxes2.items) == 0"
+                                                       ng-click="removeItems(checkboxes2.items)"
+                                                       open-modal
+                                                       data-target="#deleteContact"
+                                                       data-hint="Eliminar todos los items con check"
+                                                       class="hint--left hint--bounce pull-right btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </form>
+                                            <br/>
+                                            <div class="table-responsive"
+                                                    ng-show="bd.badContacts.length != 0">
+                                            	<table ng-table="tableParams2" class="text-center table table-striped">
+                                                    <tr ng-repeat="contact in $data">
+                                                        <td width="30" style="text-align: left" header="'ng-table/headers/checkbox2.html'">
+                                                            <input type="checkbox" ng-model="checkboxes2.items[contact.id]" />
+                                                        </td>
+                                                        <td data-title="'#'">
+                                                            {[{ $index+1}]}
+                                                        </td>
+                                                        <td data-title="'Nombre y Apellidos'" sortable="'name'">
+                                                            {[{ contact.editable ? '' : contact.name }]}
+                                                            <input type="text"
+                                                                   autofocus
+                                                                   class="form-control"
+                                                                   ng-show="contact.editable"
+                                                                   placeholder="Escribe un nombre"
+                                                                   ng-model="contact.name"/>
+                                                        </td>
+                                                        <td data-title="'Correo Electrónico'" sortable="'email'">
+                                                            {[{ contact.editable ? '' : contact.email }]}
+                                                            <input type="text"
+                                                                   ng-show="contact.editable"
+                                                                   class="form-control"
+                                                                   placeholder="Ingresa correo electrónico"
+                                                                   ng-model="contact.email"/>
+                                                        </td>
+                                                        <td data-title="'Acciones'">
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               data-hint="Editar"
+                                                               ng-show="!contact.editable"
+                                                               ng-click="contact.editable = true"
+                                                               class="hint--left hint--bounce btn btn-info"><i class="fa fa-pencil-square-o"></i></a>
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               ng-show="contact.editable"
+                                                               data-hint="Guardar"
+                                                               ng-click="addNewContactData(contact)"
+                                                               ng-disabled="!contact.name || contact.name.length == 0 || !isEmail(contact.email)"
+                                                               class="hint--left hint--bounce btn btn-primary"><i class="fa fa-floppy-o"></i></a>
+                                                            <a ui-sref="bd.edit({bdID: bd.id})"
+                                                               data-hint="Cancelar"
+                                                               ng-click="contact.editable = false"
+                                                               ng-show="contact.editable"
+                                                               class="hint--left hint--bounce btn btn-default"><i class="fa fa-undo"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <script type="text/ng-template" id="ng-table/headers/checkbox2.html">
+                                                    <input type="checkbox" ng-model="checkboxes2.checked" id="select_all2" name="filter-checkbox" value="" />
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <br/>
+                    <section class="no-margin row">
+                        <a href=""
+                           ui-sref="bd.list"
+                           class="col-sm-2 btn btn-default">Cancelar</a>
+                        <button type="submit" class="col-sm-2 col-sm-offset-1 btn btn-success"
+                                ng-click="updateModuleBD()"
+                                ng-disabled="BDForm.$invalid">Actualizar
+                        </button>
+                    </section>
+                    <br/>
+                    <br/>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+<div ng-include="'../static/src/app/components/modals/addContact.html'"></div>
+<div ng-include="'../static/src/app/components/modals/deleteContact.html'"></div>
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

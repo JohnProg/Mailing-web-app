@@ -1,0 +1,22 @@
+<fieldset>
+    <div class="row templates">
+        <a class="col-sm-4"
+           ng-class="{'selected': template.selected}"
+           ng-click="selectTemplate(template)"
+           ng-repeat="template in templates">
+            {[{template.template_name}]}
+        </a>
+        <a class="col-sm-4"
+           target="_blank"
+           ui-sref="template.create">
+            <i class="top-10 fa fa-plus fa-3x"></i>
+        </a>
+    </div>
+       <div class="row">
+        <div class="col-sm-4">
+            <a  ng-click="isInValidateStep3() ? '' : goToStep(4)"
+                ng-disabled="isInValidateStep3()"
+                class="btn btn-embossed btn-lg btn-primary">Siguiente</a>
+        </div>
+    </div>
+</fieldset>

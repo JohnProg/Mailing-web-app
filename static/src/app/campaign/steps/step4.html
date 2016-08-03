@@ -1,0 +1,60 @@
+<fieldset>
+    <br/>
+   <div class="row">
+        <label for="title"
+                class="col-sm-2 control-label">Título: </label>
+        <div class="col-sm-4">
+            <input type="text"
+               name="title"
+               id="title"
+                   required
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder=""
+                   maxlength="60"
+               ng-model="campaign.title">
+        </div>
+    </div>
+    <div class="row">
+        <label for="subtitle"
+                class="col-sm-2 control-label">Subtítulo: </label>
+        <div class="col-sm-4">
+            <input type="text"
+               name="subtitle"
+               id="subtitle"
+                   required
+                   maxlength="60"
+               class="form-control validate"
+               placeholder=""
+               ng-model="campaign.subtitle">
+        </div>
+    </div>
+    <div class="row">
+        <label for="body_section1"
+                class="col-sm-2 control-label">Cuerpo 1: </label>
+        <div class="col-sm-4">
+            <textarea name="body_section1"
+                      id="body_section1"
+                      ng-model="campaign.body_section1"
+                      required
+                      class="form-control validate" cols="30" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <label for="from_name"
+                class="col-sm-2 control-label">Cuerpo 2: </label>
+        <div class="col-sm-4">
+            <textarea name="body_section2"
+                      id="body_section2"
+                      ng-model="campaign.body_section2"
+                      class="form-control validate" cols="30" rows="5"></textarea>
+        </div>
+    </div>
+    <br/>
+    <br/>
+  <!--  <div class="input-field col s12">
+        <a href=""
+           ng-click="goToStep(5)"
+           class="btn btn-embossed btn-hg col-sm-6 col-xs-12 btn-primary">Siguiente</a>
+    </div>-->
+</fieldset>

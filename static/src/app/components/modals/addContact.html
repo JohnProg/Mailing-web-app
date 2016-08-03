@@ -1,0 +1,57 @@
+<div class="modal fade"
+     id="addContact" tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header cielo text-center">
+                <button type="button"
+                        class="close close-modal"
+                        data-dismiss="modal"
+                        ng-click="$closeModal()"
+                        aria-hidden="true">×</button>
+                <h4 class="color-azul modal-title" id="myModalLabel">
+                    <span class="module-title color-negro-regaliz pull-left">Base de datos</span> Nuevo contacto</h4>
+                <br/>
+            </div>
+            <form class="form-group" name="newContactDataForm"
+                      ng-submit="addNewContactData(currentContactData)">
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="contact_name">Nombre</label>
+                            <input type="text"
+                                   name="contact_name"
+                                   id="contact_name"
+                                   autofocus
+                                   required
+                                   class="form-control"
+                                   placeholder="Escribe un nombre"
+                                   ng-model="currentContactData.name"
+                                   >
+                        </div>
+                        <div class="form-group">
+                            <label for="contact_email">Correo electrónico</label>
+                            <input type="email"
+                                   name="contact_email"
+                                   id="contact_email"
+                                   required
+                                   class="form-control"
+                                   placeholder="Ingresa correo electrónico"
+                                   ng-model="currentContactData.email">
+                        </div>
+                </div>
+                <div class="modal-footer btn-container">
+                    <button type='button' class='size-14 btn btn-default'
+                            data-dismiss="modal"
+                        aria-hidden="true"
+                            ng-click='cancelToAddNewContactData()'>Cancelar</button>
+                    <input type='submit' class='size-14 btn btn-info'
+                            ng-disabled="newContactDataForm.$invalid || !isEmail(currentContactData.email)"
+                            value="Guardar" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

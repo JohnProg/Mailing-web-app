@@ -1,0 +1,111 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1><a href="" ui-sref="template.list"><i class="fa fa-angle-left"></i></a> Editar Plantilla</h1>
+            </header>
+            <section>
+                <form action=""
+                        name="TemplateForm">
+                    <div class="form-group row">
+                        <div class="col-sm-4 no-padding">
+                            <label for="name" class="col-sm-10 control-label">Nombre <span class="color-alizarin">(*)</span>:</label>
+                            <div class="col-sm-10">
+                                <input type="text"
+                                       autofocus
+                                       class="form-control" id="name"
+                                       ng-model="template.name"
+                                       required
+                                       placeholder="Ingresar el nombre de la plantilla">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="status" class="col-sm-2 control-label">Estado:  </label>
+                             <input type="checkbox"
+                                    id="status"
+                                    ng-model="template.status"> {[{ template.status ? '(Habilitado)' : '(Deshabilitado)'}]}
+                        </div>
+
+                    </div>
+                    <header class="row no-margin page-header">
+                        <h2 class="col-sm-12 no-padding">Editar Estructura</h2>
+                    </header>
+                    <br/>
+                    <section class="row col-sm-8">
+                        <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Fondo de cabecera: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color1">
+                            </div>
+                        </section>
+                        <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Color de título: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color2">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Color de subtítulo: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color3">
+                            </div>
+                        </section>
+                        <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Color de cuerpo 1: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color4">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Fondo de cuerpo 1: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color5">
+                            </div>
+                        </section>
+                        <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Color de cuerpo 2: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color6">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Fondo de cuerpo 2: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color7">
+                            </div>
+                        </section>
+                        <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Color de botón: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color8">
+                            </div>
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Fondo de botón: </label>
+                                <input type="color" class="form-control" ng-model="template.colors.color9">
+                            </div>
+                        </section>
+                       <!-- <section class="row colors">
+                            <div class="col-sm-5">
+                                <label for="" class=" control-label">Imágen de cabecera: </label>
+                                <a href="" class="btn btn-success"><i class="fa fa-upload"></i></a>
+                                <input type="file" class="hidden form-control" ng-model="template.cover">
+                            </div>
+                        </section>-->
+                        <br/>
+                        <section class="row colors">
+                            <a href=""
+                               ui-sref="template.list"
+                               class="col-sm-3 btn btn-default">Cancelar</a>
+                            <button type="submit"
+                                    ng-click="updateModuleTemplate()"
+                                    class="col-sm-3 col-sm-offset-1 btn btn-success"
+                                    ng-disabled="TemplateForm.$invalid">Actualizar</button>
+                        </section>
+                    </section>
+                    <figure class="col-sm-4 pull-right text-right no-padding"
+                            ng-repeat="generalTemplate in generalTemplates">
+                        <img ng-src="{[{generalTemplate.image_url}]}" width="200" height="200" alt=""/>
+                    </figure>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

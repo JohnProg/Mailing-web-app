@@ -1,0 +1,89 @@
+<div ui-view>
+
+</div>
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1>Listado de Campañas <span class="badge">{[{campaigns.length}]}</span></h1>
+            </header>
+            <section>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a ui-sref="campaign.create"
+                           class="btn btn-success"><i class="fa fa-plus-circle"></i> Crear Campaña</a>
+                    </div>
+                </div>
+                <br/>
+                <button ng-show="campaigns.length"
+                        ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Limpiar Orden</button>
+                <form action="" ng-show="campaigns.length"
+                      class="form-inline" role="form">
+                    <div class="form-group">
+                        <label for="search">Buscar: </label>
+                        <input id="search"
+                               type="text"
+                               autofocus="autofocus"
+                               placeholder="Nombre, asunto, ..."
+                               class="form-control"
+                               ng-model="search"/>
+                    </div>
+                    <div class="form-group col-sm-offset-1">
+                        <label for="status">Enviados: </label>
+                        <input id="status" type="checkbox" ng-model="status"/>
+                    </div>
+                </form>
+                <br ng-show="campaigns.length"/>
+                <p ng-show="!campaigns.length">No hay datos</p>
+                <div class="table-responsive"
+                        ng-show="campaigns.length">
+                    <table ng-table="tableParams" class="table table-bordered text-center">
+                        <tr ng-repeat="campaign in $data">
+                            <td data-title="'#'">
+                                {[{$index+1}]}
+                            </td>
+                            <td data-title="'Nombre'" sortable="'campaign_name'">
+                                {[{campaign.campaign_name}]}
+                            </td>
+                            <td data-title="'Asunto'" sortable="'subject'">
+                                {[{campaign.subject}]}
+                            </td>
+                            <td data-title="'De'" sortable="'from_name'">
+                                {[{campaign.from_name}]}
+                            </td>
+                            <td data-title="'Responder a'" sortable="'reply_email'">
+                                {[{campaign.reply_email}]}
+                            </td>
+                            <td data-title="'Fecha de creación'" sortable="'date_create'">
+                                {[{campaign.date_create}]}
+                            </td>
+                            <td data-title="'Fecha de envío'" sortable="'date_send'">
+                                {[{campaign.date_send ? campaign.date_send : 'Ninguna' }]}
+                            </td>
+                            <td data-title="'Acciones'">
+                                <a ui-sref="campaign.edit({campaignID: campaign.id})"
+                                   data-hint="Editar"
+                                   class="hint--left hint--bounce btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                                <a ui-sref="statistics({campaignID: campaign.id})"
+                                   data-hint="Ver Estadisticas"
+                                   class="hint--left hint--bounce btn btn-primary"><i class="fa fa-bar-chart"></i></a>
+                                <a ng-click="removeItem(campaign)"
+                                   open-modal
+                                   data-target="#delete"
+                                   data-hint="Eliminar"
+                                   class="hint--left hint--bounce btn btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div ng-include="'../static/src/app/campaign/delete.html'"></div>
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

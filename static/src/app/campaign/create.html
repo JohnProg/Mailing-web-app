@@ -1,0 +1,100 @@
+<style>
+    .ng-table-counts {
+        display: none;
+    }
+</style>
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1><a href="" ui-sref="campaign.list"><i class="fa fa-angle-left"></i></a> Crear Campaña</h1>
+            </header>
+            <section>
+                <form role="form" name="campaignForm" id="campaignForm" class="form-group">
+                    <ul collapsible class="collapsible collapsible-model-1">
+                        <li ng-init="selected1 = true"
+                            class="item-1">
+                            <header class="collapsible-header">
+                                <a class="step color-azul-acero current-step btn-collapsible"
+                                   ng-class="{'step-selected': selected1}"><b>1</b>Datos de la campaña</a>
+                            </header>
+                            <div class="collapsible-body"
+                                 ng-show="selected1">
+                                <div ng-include src="'../static/src/app/campaign/steps/step1.html'"></div>
+                            </div>
+                        </li>
+                        <li class="item-2">
+                            <header class="collapsible-header">
+                                <a class="step btn-collapsible"
+                                   ng-click="step = 2"
+                                   ng-class="{'color-azul-acero': !isInValidateStep1()}"><b>2</b>Importar contactos</a>
+                            </header>
+                            <div class="collapsible-body"
+                                 ng-show="!isInValidateStep1(campaignForm)">
+                                <div ng-show="step == 2"
+                                     ng-include src="'../static/src/app/campaign/steps/step2.html'"></div>
+                            </div>
+                        </li>
+                        <li class="item-3">
+                            <header class="collapsible-header">
+                                <a class="step btn-collapsible"
+                                   ng-click="!isInValidateStep1() && !isInValidateStep2() ? step = 3 : ''"
+                                   ng-class="{'color-azul-acero': !isInValidateStep1() && !isInValidateStep2()}"><b>3</b>Seleccionar plantilla</a>
+                            </header>
+                            <div class="collapsible-body"
+                                 ng-show="!isInValidateStep1(campaignForm) && !isInValidateStep2()">
+                                <div ng-show="step == 3"
+                                     ng-include src="'../static/src/app/campaign/steps/step3.html'"></div>
+                            </div>
+                        </li>
+                        <li class="item-4">
+                            <header class="collapsible-header">
+                                <a class="step btn-collapsible"
+                                   ng-click="!isInValidateStep1() && !isInValidateStep2() && !isInValidateStep3() ? step = 4 : ''"
+                                   ng-class="{'color-azul-acero': !isInValidateStep1() && !isInValidateStep2() && !isInValidateStep3()}"><b>4</b>Redactar mensaje</a>
+                            </header>
+                            <div class="collapsible-body"
+                                 ng-show="!isInValidateStep1() && !isInValidateStep2() && !isInValidateStep3()">
+                                <div ng-show="step == 4"
+                                     ng-include src="'../static/src/app/campaign/steps/step4.html'"></div>
+                            </div>
+                        </li>
+                        <!--<li class="item-5">
+                            <header class="collapsible-header">
+                                <a class="step btn-collapsible"
+                                   ng-class="{'step-selected': selected3}"><b>5</b>Configurar notificaciones</a>
+                            </header>
+                            <div class="collapsible-body"
+                                 ng-show=selected3>
+                                <div ng-show="step == 5"
+                                     ng-include src="'../static/src/app/campaign/steps/step5.html'"></div>
+                            </div>
+                        </li>-->
+                    </ul>
+                    <section>
+                        <br/>
+                        <div class="btn-group">
+                            <a ui-sref="campaign.list"
+                                    class="btn btn-lg btn-default">Cancelar</a>
+                            <button type="button"
+                                    ng-click="saveCampaign(1)"
+                                    ng-disabled="isInValidateStep1() || isInValidateStep2() || isInValidateStep3() || isInValidateStep4()"
+                                    class="btn btn-lg btn-success col-sm-offset-1">Solo crear</button>
+                            <button type="button"
+                                    ng-click="saveCampaign(2)"
+                                    ng-disabled="isInValidateStep1() || isInValidateStep2() || isInValidateStep3() || isInValidateStep4()"
+                                    class="btn btn-lg btn-primary col-sm-offset-1">Crear y enviar</button>
+                        </div>
+                    </section>
+                </form>
+
+            </section>
+            <br/>
+            <br/>
+        </div>
+    </div>
+</section>
+
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

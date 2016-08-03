@@ -1,0 +1,26 @@
+<header ng-controller="NavBarCtrl">
+    <nav class="navbar navbar-fixed-top affix-top" data-offset-top="34" data-spy="affix" role="main">
+        <div class="container">
+            <a class="navbar-brand" ui-sref="home" title="Ir al inicio">
+                Easy Mailing
+            </a>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ request }} <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="profile">Perfil</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a open-modal
+                               data-target="#closeSession">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div ng-show="showLoaderForm" class="container-spinner">
+        <div class="spinner"></div>
+    </div>
+</header>
+<div ng-controller="NavBarCtrl" ng-include="'../static/src/app/components/modals/closeSession.html'"></div>
+

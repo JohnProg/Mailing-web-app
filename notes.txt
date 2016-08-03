@@ -1,0 +1,22 @@
+FrontEnd new Project
+====================
+Install the required tools: yo, gulp, bower
+
+sudo npm install -g yo gulp bower
+Install generator-gulp-angular:
+
+npm install -g generator-gulp-angular
+Make a new directory, and cd into it:
+
+mkdir my-new-project && cd $_
+Run yo gulp-angular, optionally passing an app name:
+
+yo gulp-angular [app-name]
+
+FrontEnd with existing Project
+=============================
+Install the required tools: yo, gulp, bower
+
+sudo npm install -g yo gulp bower
+sudo npm install
+bower install

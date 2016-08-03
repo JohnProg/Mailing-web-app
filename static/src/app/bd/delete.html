@@ -1,0 +1,25 @@
+<div class="modal fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close close-modal"
+                        data-dismiss="modal" ng-click="$closeModal()"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="module-title color-silver pull-left">Lista de contactos</span> Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row no-margin">
+                    <p class="text-center">¿Estás seguro que deseas eliminar ésta lista de contactos?</p>
+                </div>
+            </div>
+            <div class="modal-footer text-center">
+                <a class="btn btn-default" href="" data-dismiss="modal"
+                   aria-hidden="true"
+                   ng-click="cancelConfirmation()">Cancelar</a>
+                <a class="btn btn-danger" ng-click="acceptConfirmation()" href="">Aceptar</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+Django==1.8.2
+Pillow==2.6.1
+dj-database-url==0.3.0
+dj-static==0.0.6
+django-extensions==1.5.5
+django-extlog==0.8
+django-grappelli==2.6.4
+django-toolbelt==0.0.1
+docopt==0.4.0
+gunicorn==19.3.0
+mandrill==1.0.57
+psycopg2==2.6
+requests==2.7.0
+six==1.9.0
+sqlparse==0.1.15
+static3==0.6.1
+wsgiref==0.1.2

@@ -1,0 +1,42 @@
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1><a href="" ui-sref="campaign.list"><i class="fa fa-angle-left"></i></a> Estadísticas</h1>
+            </header>
+            <section>
+                <h3>Recibidos: {[{data.received}]}  Rechazados: {[{data.rejected}]}</h3>
+                <div class="chart"
+                     pie-chart
+                     data="data"></div>
+                <!--<input class="form-control" type="text" ng-model="data.rejected"/>-->
+                <!--<input class="form-control" type="text" ng-model="data.received"/>-->
+                <!--{[{data}]}-->
+                <br/>
+                <header>
+                    <h2 class=" color-negro-regaliz">Resultados</h2>
+                </header>
+                <div class="col-sm-12 no-padding">
+                    <h4 class="color-negro-regaliz"><b>Correos abiertos ({[{data.opens}]})</b></h4>
+                    <div class="progress">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="{[{ data.unique_opens }]}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': data.unique_opens+'%' }">
+                        {[{ data.unique_opens ? data.unique_opens : 0 }]} %
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 no-padding">
+                    <h4 class="color-negro-regaliz"><b>Enlaces clickeado ({[{data.clicks}]})</b></h4>
+                    <div class="progress">
+                      <div class="progress-bar ambar" role="progressbar" aria-valuenow="{[{ data.unique_clicks }]}" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': data.unique_clicks+'%' }">
+                        {[{ data.unique_clicks ? data.unique_clicks : 0 }]} %
+                      </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

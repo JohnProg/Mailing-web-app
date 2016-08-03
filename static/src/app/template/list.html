@@ -1,0 +1,74 @@
+<div ui-view>
+
+</div>
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1>Listado de Plantillas <span class="badge">{[{templates.length}]}</span></h1>
+            </header>
+            <section>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a ui-sref="template.create"
+                           class="btn btn-success"><i class="fa fa-plus-circle"></i> Crear Plantilla</a>
+                    </div>
+                </div>
+                <br/>
+                <button ng-show="templates.length"
+                        ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Limpiar Orden</button>
+                <form ng-show="templates.length"
+                      action="" class="form-inline" role="form">
+                    <div class="form-group">
+                        <label for="search">Buscar: </label>
+                        <input id="search"
+                               type="text"
+                               autofocus
+                               placeholder="Nombre, asunto, ..."
+                               class="form-control"
+                               ng-model="search"/>
+                    </div>
+                    <div class="form-group col-sm-offset-1">
+                        <label for="status">Activos: </label>
+                        <input id="status" type="checkbox" ng-model="status"/>
+                    </div>
+                </form>
+                <br ng-show="templates.length"/>
+                <p ng-show="!templates.length">No hay datos</p>
+                <div class="table-responsive"
+                        ng-show="templates.length">
+                    <table ng-table="tableParams" class="table table-bordered text-center">
+                        <tr ng-repeat="template in $data">
+                            <td data-title="'#'">
+                                {[{$index+1}]}
+                            </td>
+                            <td data-title="'Nombre'" sortable="'template_name'">
+                                {[{template.template_name}]}
+                            </td>
+                            <td data-title="'Estado'" sortable="'status'">
+                                {[{template.status == 1 ? 'Activo' : 'No activo' }]}
+                            </td>
+                            <td data-title="'Acciones'">
+                                <a ui-sref="template.edit({templateID: template.id})"
+                                   data-hint="Editar"
+                                   class="hint--left hint--bounce btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                                <a ng-click="removeItem(template)"
+                                   open-modal
+                                   data-target="#delete"
+                                   data-hint="Eliminar"
+                                   class="hint--left hint--bounce btn btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div ng-include="'../static/src/app/template/delete.html'"></div>
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

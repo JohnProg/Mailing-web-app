@@ -1,0 +1,167 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+.thumbnail {
+  height: 200px;
+
+  img.pull-right {
+    width: 50px;
+  }
+}
+
+@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic");
+
+/****************************/
+/********* GENERAL *********/
+/**************************/
+body {
+  font-family: "Source Sans Pro", "Helvetica Neue", sans-serif;
+  padding-top: 58px;
+  color: #303030;
+  background-color: #f3f4f8;
+}
+
+a {
+  -webkit-transition: .25s;
+  -moz-transition: .25s;
+  -o-transition: .25s;
+  transition: .25s;
+  color: #2980b9;
+  cursor: pointer;
+}
+
+input {
+  box-shadow: none !important;
+}
+
+legend {
+  border-bottom: none;
+  padding-bottom: 10px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.btn {
+  outline: none !important;
+}
+
+.btn-center {
+  margin: 0 auto;
+  display: block;
+  min-width: 60%;
+}
+
+.btn-info {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #3498db;
+}
+
+.btn-info:hover {
+  background-color: rgba(52, 152, 219, 0.83);
+}
+
+/****************************/
+/********* NAVBAR **********/
+/**************************/
+.nav li > a {
+  color: #fff;
+}
+
+.nav li > a:hover, .nav li > a:focus, .nav li > a:active {
+  background-color: #3498db;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: #3498db;
+}
+
+.nav .dropdown-menu > li > a {
+  color: #34495e;
+}
+
+.nav .dropdown-menu > li > a:hover {
+  color: #fff;
+}
+
+.navbar {
+  background-color: #34495e;
+  border-bottom: 8px solid #95a5a6;
+}
+
+.navbar-brand, .navbar-brand:hover {
+  color: #fff;
+}
+
+/****************************/
+/********* PANEL ***********/
+/**************************/
+.panel {
+  margin-top: 4em;
+  min-width: 400px;
+}
+
+.panel-body {
+  width: 75%;
+  margin: 0 auto;
+}
+
+/****************************/
+/******* PAGE    ***********/
+/**************************/
+.page-header {
+  border-bottom: 1px solid #303030;
+  padding-bottom: 0;
+}
+
+/****************************/
+/******* SIDEBAR ***********/
+/**************************/
+aside {
+  position: absolute;
+  top: 35%;
+  left: 0;
+}
+
+aside a {
+  display: block;
+  background-color: white;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+aside li:first-child a {
+  border-top: 1px solid #e6e6e6;
+}
+
+/****************************/
+/******* ACORDEON ***********/
+/**************************/
+acordeon {
+  background-color: white;
+  min-height: 400px;
+  width: 100%;
+  display: block;
+}
+
+/****************************/
+/******* COLORS  ***********/
+/**************************/
+.color-azul {
+  color: #3498db;
+}
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your sass files automatically */
+// injector
+// endinjector

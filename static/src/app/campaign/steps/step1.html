@@ -1,0 +1,81 @@
+<fieldset>
+    <br/>
+    <div class="row">
+        <label for="campaign_name"
+                class="col-sm-3 control-label">Título de la campaña: </label>
+        <div class="col-sm-4">
+            <input type="text"
+               name="campaign_name"
+               id="campaign_name"
+                   required
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder="Ingresar un nombre para la campaña"
+               ng-model="campaign.campaign_name">
+        </div>
+    </div>
+    <div class="row">
+        <label for="from_name"
+                class="col-sm-3 control-label">Para: </label>
+        <div class="col-sm-4">
+            <input type="email"
+               name="from_name"
+               id="from_name"
+                   required
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder="john@example.com"
+               ng-model="campaign.from_name">
+        </div>
+    </div>
+    <div class="row">
+        <label for="reply_email"
+                class="col-sm-3 control-label">De: </label>
+        <div class="col-sm-4">
+            <input type="email"
+               name="reply_email"
+               id="reply_email"
+                   required
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder="john@example.com"
+               ng-model="campaign.reply_email">
+        </div>
+    </div>
+    <div class="row">
+        <label for="subject"
+                class="col-sm-3 control-label">Asunto: </label>
+        <div class="col-sm-4">
+            <input type="text"
+               name="subject"
+               id="subject"
+               required
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder="Ingresar el asunto del correo"
+               ng-model="campaign.subject">
+        </div>
+    </div>
+    <div class="row">
+        <label for="link_redirect_to"
+                class="col-sm-3 control-label">URL (Call To Action): </label>
+        <div class="col-sm-4">
+            <input type="url"
+                   required
+               name="link_redirect_to"
+               id="link_redirect_to"
+               autofocus="autofocus"
+               class="form-control validate"
+               placeholder="http://"
+               ng-model="campaign.link_redirect_to">
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-4">
+            <a  ng-click="isInValidateStep1() ? '' : goToStep(2)"
+            ng-disabled="isInValidateStep1()"
+            class="btn btn-lg btn-embossed btn-hg btn-primary">Siguiente</a>
+        </div>
+    </div>
+</fieldset>

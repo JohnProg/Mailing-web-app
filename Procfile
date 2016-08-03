@@ -1,0 +1,1 @@
+web: gunicorn easymailing.wsgi --log-file -

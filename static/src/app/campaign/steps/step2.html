@@ -1,0 +1,49 @@
+<fieldset>
+   <div class="row">
+        <div class="col-sm-12">
+            <a ui-sref="bd.create"
+               class="btn btn-success"><i class="fa fa-plus-circle"></i> Añadir listas de contactos</a>
+        </div>
+       <div class="col-sm-12">
+           <br/>
+           <div class="table-responsive">
+            <table ng-table="tableParams" class="table table-bordered text-center">
+                <tr ng-repeat="bd in $data">
+                    <td width="30" style="text-align: left" header="'ng-table/headers/checkbox.html'">
+                        <input type="checkbox" ng-model="checkboxes.items[bd.id]" />
+                    </td>
+                    <td data-title="'Nombre'" sortable="'list_name'">
+                        {[{bd.list_name}]}
+                    </td>
+                    <td data-title="'Creado el'" sortable="'created_add'">
+                        {[{bd.created_add}]}
+                    </td>
+                    <td data-title="'Actualizado el'" sortable="'updated_add'">
+                        {[{bd.updated_add ? bd.updated_add : 'Ninguna'}]}
+                    </td>
+                    <td data-title="'Cantidad de contactos'" sortable="'updated_add'">
+                        {[{bd.good_contacts + bd.bad_contacts}]}
+                    </td>
+                    <td data-title="'Acciones'">
+                        <a ui-sref="bd.edit({bdID: bd.id})"
+                           target="_blank"
+                           data-hint="Editar"
+                           class="hint--left hint--bounce btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                    </td>
+                </tr>
+            </table>
+            <script type="text/ng-template" id="ng-table/headers/checkbox.html">
+                <input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" value="" />
+            </script>
+       </div>
+    </div>
+   </div>
+   <div class="row">
+        <div class="col-sm-4">
+            <a  ng-click="isInValidateStep2() ? '' : goToStep(3)"
+                ng-disabled="isInValidateStep2()"
+                class="btn btn-embossed btn-lg btn-primary">Siguiente</a>
+        </div>
+    </div>
+</fieldset>
+<div ng-include="'../static/src/app/bd/delete.html'"></div>

@@ -1,0 +1,52 @@
+<div class="modal fade"
+     id="myModal1" tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 550px;">
+        <form class="modal-content"
+              ng-submit="updateBadImportsFromMailingDB()"
+              name="badImportsForm">
+            <div class="modal-header cielo text-center">
+                <h4 class="modal-title" id="myModalLabel">
+                    <span class="module-title color-silver pull-left">Base de datos</span> Problemas de importación</h4>
+                <br/>
+                <p class="color-negro-regaliz text-left">Se encontraron {[{ bd.badContacts.length + bd.goodContacts.length }]} de los cuales
+                    <br/> {[{bd.goodContacts.length}]} se ingresaron correctamente.</p>
+            </div>
+            <div class="modal-body">
+                 <ul class="list-contacts bad-list-contacts-header">
+                    <li class="row no-margin">
+                        <span class="text-left col-sm-6 color-negro-regaliz"><b>Nombre</b></span>
+                        <span class="text-left col-sm-6 color-negro-regaliz"><b>Correo electrónico</b></span>
+                    </li>
+                </ul>
+                <ul class="contact-list-items list-contacts bad-list-contacts-body">
+                    <li ng-repeat="contact in bd.badContacts"
+                        ng-init="contact.name = contact.name_and_last_name"
+                            class="row no-margin" ng-class="{'border-top': $first, 'border-bottom': !$last}">
+                        <span class="text-center col-sm-6 color-negro-regaliz">
+                            <input type="text" class="form-control" placeholder="Escribe un nombre" ng-model="contact.name"/>
+                        </span>
+                        <span class="text-center col-sm-6 color-negro-regaliz">
+                            <input type="text" class="form-control" placeholder="Ingresa correo electrónico" ng-model="contact.email"/>
+                        </span>
+                        <button type="button" class="close"
+                                ng-click="removeBadEmail(contact)">×</button>
+                        <button type="button" class="close"
+                                ng-disabled="!contact.name || !isEmail(contact.email)"
+                                ng-click="reSendBadEmail(contact)">×</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer btn-container">
+                <button type='button' class='size-14 btn btn-default'
+                        aria-hidden="true"
+                        ng-click='closeModal()'>Continuar sin corregir</button>
+                <input type='submit' class='size-14 btn btn-info'
+                       value="Guardar y continuar"
+                        ng-click='updateBadImportsFromMailingDB()'>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<div ui-view>
+
+</div>
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <header class="page-header">
+                <h1>Listado de BDs <span class="badge">{[{dbs.length}]}</span></h1>
+            </header>
+            <section>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a ui-sref="bd.create"
+                           class="btn btn-success"><i class="fa fa-plus-circle"></i> Crear Lista de contactos</a>
+                    </div>
+                </div>
+                <br/>
+                <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Limpiar Orden</button>
+                <form action="" class="form-inline" role="form">
+                    <div class="form-group">
+                        <label for="search">Buscar: </label>
+                        <input id="search"
+                               type="text"
+                               autofocus="autofocus"
+                               placeholder="Nombre, asunto, ..."
+                               class="form-control"
+                               ng-model="search"/>
+                    </div>
+                    <div class="form-group col-sm-offset-1">
+                        <label for="status">Activos: </label>
+                        <input id="status" type="checkbox" ng-model="status"/>
+                    </div>
+                </form>
+                <br/>
+
+                <div class="table-responsive">
+                    <table ng-table="tableParams" class="table table-bordered text-center">
+                        <tr ng-repeat="bd in $data">
+                            <td data-title="'#'">
+                                {[{$index+1}]}
+                            </td>
+                            <td data-title="'Nombre'" sortable="'list_name'">
+                                {[{bd.list_name}]}
+                            </td>
+                            <td data-title="'Estado'" sortable="'status'">
+                                {[{bd.status == 1 ? 'Activo' : 'No activo' }]}
+                            </td>
+                            <td data-title="'Creado el'" sortable="'created_add'">
+                                {[{bd.created_add}]}
+                            </td>
+                            <td data-title="'Actualizado el'" sortable="'updated_add'">
+                                {[{bd.updated_add ? bd.updated_add : 'Ninguna'}]}
+                            </td>
+                            <td data-title="'Cantidad de Contactos'">
+                                {[{bd.good_contacts + bd.bad_contacts}]}
+                            </td>
+                            <td data-title="'Acciones'">
+                                <a ui-sref="bd.edit({bdID: bd.id})"
+                                   data-hint="Editar"
+                                   class="hint--left hint--bounce btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>
+                                <a ng-click="removeItem(bd)"
+                                   open-modal
+                                   data-target="#delete"
+                                   data-hint="Eliminar"
+                                   class="hint--left hint--bounce btn btn-danger"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br/>
+            </section>
+        </div>
+    </div>
+</section>
+
+<div ng-include="'../static/src/app/bd/delete.html'"></div>
+<div ng-show="showLoaderForm" class="container-spinner">
+    <div class="spinner"></div>
+</div>

@@ -1,0 +1,25 @@
+{% extends 'event/event_base.html' %}
+{% load eventdate %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-lg-8 col-lg-offset-2 col-sm-offset-2 col-xs-12">
+      <div class="hero-unit text-center">
+          <img src="{{ STATIC_URL }}images/Watches.png" width="100" alt=""/>
+          <h1 class="size-35">Nos perdimos por un momento</h1>
+          <br />
+          <p>Al parecer llegamos a un sitio inexistente o que probablemente fue eliminado, te recordamos realizar tu búsqueda nuevamente o vuelva a la página de inicio y explora los diversos proveedores.</p>
+          <br/>
+          <a href="" class="color-azul" onclick="goToBack()"><b>volver a la página previa</b></a> - <a href="/" class="color-azul"><b>ir al inicio</b></a>
+        </div>
+        <br />
+        </div>
+  </div>
+</div>
+    <script>
+        function goToBack() {
+             window.history.back();
+        }
+    </script>
+{% endblock content %}
